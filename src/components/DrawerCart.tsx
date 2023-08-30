@@ -1,7 +1,7 @@
 import { SlClose } from 'react-icons/sl'
 import DrawerItem from './DrawerItem'
 import { useSelector } from 'react-redux'
-import { RootState } from './ShoppingCart'
+import { CartItem, RootState } from './ShoppingCart'
 type drawerProps = {
   open: boolean
   closeDrawer: () => void
@@ -10,6 +10,10 @@ type drawerProps = {
 const DrawerCart = ({ open, closeDrawer }: drawerProps) => {
   const basket = useSelector((state: RootState) => state.cart.basket)
   const totalPrice = useSelector((state: RootState) => state.cart.totalPrice)
+
+  const handlePurchase = () => {
+    alert('this feture will be add in future')
+  }
 
   const DrawerClosed = open ? ' translate-x-0' : 'translate-x-full'
   return (
@@ -28,7 +32,7 @@ const DrawerCart = ({ open, closeDrawer }: drawerProps) => {
         className='custom-scrollbar flex flex-col h-full justify-start mt-8'
         style={{ maxHeight: '55vh', overflowY: 'auto', overflowX: 'hidden' }}
       >
-        {basket.map((product, i) => (
+        {basket.map((product: CartItem, i: number) => (
           <DrawerItem
             key={i}
             index={i}
@@ -46,7 +50,12 @@ const DrawerCart = ({ open, closeDrawer }: drawerProps) => {
           <p>
             Total Order Price: <span className='text-blue-500 text-xl'> {totalPrice.toFixed(2)} zł</span>
           </p>
-          <button className='px-6 py-2 bg-blue-500 rounded-lg text-white my-4'>Purchase</button>
+          <button
+            onClick={handlePurchase}
+            className='px-6 py-2 bg-blue-500 rounded-lg text-white my-4'
+          >
+            Purchase
+          </button>
         </div>
       )}
     </div>

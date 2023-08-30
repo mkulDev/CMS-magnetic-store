@@ -1,7 +1,13 @@
 import { IoMdClose } from 'react-icons/io'
 import { removeFromBasket } from '../redux/cartSlice'
 import { useDispatch } from 'react-redux'
-const DrawerItem = ({ product, index }) => {
+import { CartItem } from './ShoppingCart'
+
+type propsTypes = {
+  product: CartItem
+  index: number
+}
+const DrawerItem = ({ product, index }: propsTypes) => {
   const dispatch = useDispatch()
   const handleRemove = () => {
     console.log('click')

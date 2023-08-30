@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TiShoppingCart } from 'react-icons/ti'
 import Drawer from './DrawerCart'
 import { useSelector } from 'react-redux'
@@ -26,7 +26,6 @@ const ShoppingCart = () => {
 
   useEffect(() => {
     setNumberOfCartItems(basket.length)
-    console.log(totalAmount)
   }, [basket])
 
   // Toggle cart drawer
