@@ -7,8 +7,8 @@ import ShoppingCart from './ShoppingCart'
 const Navigation = () => {
   const location = useLocation()
   return (
-    <nav className='flex justify-between h-[80px] bg-gray-200 shadow-md gap-8 px-8 items-center text-sxl font-bold text-gray-800 font-[roboto] sticky'>
-      <div className='flex gap-4'>
+    <nav className={`bg-gray-100 shadow-md h-[80px] w-full flex justify-between items-center px-4 sm:px-8`}>
+      <div className='flex gap-4 text-sm md:text-2xl font-bold'>
         <NavLink
           to='/'
           className={`hover:opacity-60 duration-500 flex items-center gap-1 ${location.pathname === '/' ? 'text-blue-500' : ''}`}
@@ -31,9 +31,8 @@ const Navigation = () => {
           Contact
         </NavLink>
       </div>
-      <div>
-        <ShoppingCart />
-      </div>
+
+      {location.pathname === '/store' && <ShoppingCart />}
     </nav>
   )
 }

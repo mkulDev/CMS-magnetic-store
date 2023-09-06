@@ -1,8 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { CartItem } from '../components/ShoppingCart'
 
+export interface CartState {
+  basket: CartItem[]
+  totalPrice: number
+}
+
+const initialState: CartState = {
+  basket: [],
+  totalPrice: 0
+}
 const cartSlice = createSlice({
   name: 'cartSlice',
-  initialState: { basket: [], totalPrice: 0 },
+  initialState,
   reducers: {
     addToBasket: (state, action) => {
       return {
@@ -13,7 +23,7 @@ const cartSlice = createSlice({
     getTotalPrice: (state) => {
       const calculation = [...state.basket]
         .map((item) => {
-          return item.price - item.saleAmount
+          return parseFloat(item.price) - parseFloat(item.saleAmount)
         })
         .reduce((a, b) => {
           return a + b

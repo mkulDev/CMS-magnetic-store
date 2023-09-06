@@ -4,14 +4,14 @@ import Drawer from './DrawerCart'
 import { useSelector } from 'react-redux'
 
 export type CartItem = {
-  id: number
   name: string
   description: string
   category: string
-  price: number
-  image: string
+  price: string
+  image: string | Blob
   sale: boolean
-  saleAmount: number
+  saleAmount: string
+  suspend: boolean
 }
 
 export type RootState = {
@@ -38,13 +38,13 @@ const ShoppingCart = () => {
     <>
       <div className='flex items-center gap-2 '>
         <div
-          className=' relative mr-2 hover:text-blue-500 duration-500 cursor-pointer border-2 border-[#ccc] rounded-2xl p-2'
+          className=' relative hover:text-blue-500 duration-500 cursor-pointer border-2 border-[#ccc] rounded-2xl p-2'
           onClick={openDrawer}
         >
-          <TiShoppingCart size={38} />
+          <TiShoppingCart size={32} />
           {numberOfCartItems >= 1 && <p className='rounded-full text-sm bg-gray-800 text-white absolute bottom-[-10px] right-[-10px]  h-6 w-6 flex items-center justify-center'>{numberOfCartItems}</p>}
         </div>
-        <p className='w-[80px] text-sm'>{totalAmount.toFixed(2)} zł</p>
+        <p className='  hidden sm:block w-[80px] text-sm font-bold'>{totalAmount.toFixed(2)} zł</p>
       </div>
       <Drawer
         open={open}

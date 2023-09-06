@@ -17,7 +17,7 @@ const DrawerCart = ({ open, closeDrawer }: drawerProps) => {
 
   const DrawerClosed = open ? ' translate-x-0' : 'translate-x-full'
   return (
-    <div className={`fixed flex flex-col  justify-between h-full lg:w-[30vw] md:w-full rounded-l-xl  bg-white z-[100] top-0 right-0 px-8 py-12 ${DrawerClosed}  transition-transform duration-1000 shadow-lg`}>
+    <div className={`fixed flex flex-col  justify-between h-full lg:w-[30vw] w-full md:w-1/2 lg:1/3 rounded-l-xl  bg-white z-[10] top-0 right-0 px-8 py-6 sm:py-12 ${DrawerClosed}  transition-transform duration-1000 sm:shadow-lg`}>
       <div className='flex flex-row justify-between border-b-2 pb-8'>
         <h2 className='text-xl inline-block'>
           <span className='text-blue-500 text-2xl mr-1'>Cart</span> content
@@ -52,7 +52,7 @@ const DrawerCart = ({ open, closeDrawer }: drawerProps) => {
           </p>
           <button
             onClick={handlePurchase}
-            className='px-6 py-2 bg-blue-500 rounded-lg text-white my-4'
+            className='px-6 py-2 bg-blue-500 rounded-lg text-white my-4 hover:opacity-60 duration-500'
           >
             Purchase
           </button>
