@@ -35,8 +35,8 @@ const DrawerCart = ({ open, closeDrawer }: drawerProps) => {
         {basket.map((product: CartItem, i: number) => (
           <DrawerItem
             key={i}
-            index={i}
             product={product}
+            adminMode={false}
           />
         ))}
       </div>

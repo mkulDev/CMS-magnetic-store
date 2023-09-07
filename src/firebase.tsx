@@ -2,11 +2,15 @@ import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getStorage, uploadBytes, ref, getDownloadURL, deleteObject } from 'firebase/storage'
 import { setDoc, getFirestore, doc, getDoc, collection, getDocs, updateDoc, deleteDoc } from 'firebase/firestore'
-import { FirebaseFirestoreError } from 'firebase/firestore'
 import { CartItem } from './components/ShoppingCart'
-
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  // Paste here your own Firebase configuration
+  apiKey: import.meta.env.VITE_REACT_APP_APP_API_KEY,
+  authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_REACT_APP_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_REACT_APP_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_REACT_APP_APP_ID
 }
 
 // Initialize Firebase
@@ -22,10 +26,11 @@ export const getAllProducts = async (collectionName: string) => {
   return productArr
 }
 
-export const uploadFileToFirestore = async (file, name: string) => {
+export const uploadFileToFirestore = async (file: File, name: string) => {
   try {
     const fileName = `${name}_${Date.now()}`
     const storageRef = ref(storage, `images/${fileName}`)
+
     const uploadTask = uploadBytes(storageRef, file)
     await uploadTask
 
@@ -42,12 +47,11 @@ export const uploadFileToFirestore = async (file, name: string) => {
 export const deleteFileFromFireStore = async (url: string) => {
   try {
     const fileRef = ref(storage, url)
-    console.log(fileRef)
     deleteObject(fileRef).then(() => {
       console.log('File deleted successfully')
     })
-  } catch (error: FirebaseFirestoreError) {
-    console.log(error.message)
+  } catch (error) {
+    console.log((error as Error).message) // Use type assertion
   }
 }
 
@@ -61,7 +65,6 @@ export const uploadProduct = async (product: CartItem) => {
 }
 
 export const suspendProduct = async (product: CartItem) => {
-  console.log(product.name)
   try {
     const productRef = doc(db, 'products', product.name)
     const productDoc = await getDoc(productRef)
@@ -84,7 +87,7 @@ export const deleteProduct = async (name: string) => {
   try {
     await deleteDoc(doc(db, 'products', name))
     console.log('Product has been removed')
-  } catch (error: FirebaseFirestoreError) {
-    console.log(error.message)
+  } catch (error) {
+    console.log((error as Error).message) // Use type assertion
   }
 }

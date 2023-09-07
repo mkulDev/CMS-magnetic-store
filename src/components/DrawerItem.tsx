@@ -9,16 +9,15 @@ import { deleteProduct, getAllProducts, deleteFileFromFireStore } from '../fireb
 
 type propsTypes = {
   product: CartItem
-  index: number
   adminMode: boolean
 }
 
-const DrawerItem = ({ product, index, adminMode }: propsTypes) => {
+const DrawerItem = ({ product, adminMode }: propsTypes) => {
   const [showModal, setShowModal] = useState(false)
   const dispatch = useDispatch()
 
   const handleRemove = () => {
-    dispatch(removeFromBasket(index))
+    dispatch(removeFromBasket(product))
   }
 
   const handleDelete = () => {
@@ -26,7 +25,9 @@ const DrawerItem = ({ product, index, adminMode }: propsTypes) => {
   }
 
   const confirmDelete = async () => {
-    await deleteFileFromFireStore(product.image)
+    if (typeof product.image === 'string') {
+      await deleteFileFromFireStore(product.image)
+    }
     await deleteProduct(product.name)
 
     getAllProducts('products').then((products) => {
@@ -42,12 +43,13 @@ const DrawerItem = ({ product, index, adminMode }: propsTypes) => {
   return (
     <div className={` flex items-center  w-full ${adminMode ? ' justify-between shadow-lg m-2 px-2 py-1 lg:px-6 lg:py-3 md:w-2/3 lg:min-w-[500px] lg:w-2/5 rounded-xl border-2' : 'm-2'} `}>
       <img
-        src={product.image}
+        src={typeof product.image === 'string' ? product.image : ''}
         className={`${adminMode ? 'w-12 md:w-[80px] md:h-[80px] lg:w-[100px]  lg:h-[100px]' : 'w-12'} self-center`}
       />
       <div className='flex items-baseline  justify-end'>
         <h3 className='font-bold text-blue-500 mx-2 text-sm md:text-xl '>{product.name}</h3>
-        <p className='text-sm md:text-base '>{`${(product.sale ? parseFloat(product.price) : parseFloat(product.price) - parseFloat(product.saleAmount)).toFixed(2)} zł`} </p>
+
+        <p className='text-sm md:text-base '>{`${(product.sale ? parseFloat(product.price) - parseFloat(product.saleAmount) : parseFloat(product.price)).toFixed(2).toString()} zł`} </p>
       </div>
       {!adminMode && (
         <IoMdClose

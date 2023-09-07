@@ -4,12 +4,21 @@ import CustomItem from '../CustomItem'
 import { useDispatch } from 'react-redux'
 import { updateProducts } from '../../redux/productsSlice'
 
-/* import { products } from '../../data/products'
-import { CartItem } from './ShoppingCart' - for upload multiple products from file */
+/* import { products } from '../../data/products' */
 
 type statusMessage = {
   error: boolean
   message: string
+}
+type product = {
+  name: string
+  description: string
+  category: string
+  price: string
+  image: File | null
+  sale: boolean
+  saleAmount: string
+  suspend: boolean
 }
 
 const initialState = {
@@ -17,7 +26,7 @@ const initialState = {
   description: '',
   category: '',
   price: '',
-  image: '',
+  image: null,
   sale: false,
   saleAmount: '',
   suspend: false
@@ -26,7 +35,7 @@ const initialState = {
 const AddProductTab = () => {
   const [statusMessage, setStatusMessage] = useState<statusMessage | null>(null)
   const [isSale, setIsSale] = useState<boolean>(false)
-  const [newProduct, setNewProduct] = useState(initialState)
+  const [newProduct, setNewProduct] = useState<product>(initialState)
   const dispatch = useDispatch()
   // Function for adding multiple products from file
   /*const addMultipleProduct = (productArr: CartItem[]) => {
@@ -40,12 +49,14 @@ const AddProductTab = () => {
     const checkImage = Boolean(/\.(jpg|jpeg|png)$/i.test(value) && name === 'image')
 
     if (checkImage) {
-      const myfile = e.target.files[0]
-
-      setNewProduct({
-        ...newProduct,
-        [name]: myfile
-      })
+      const inputElement = e.target as HTMLInputElement
+      const myfile = inputElement.files?.[0]
+      if (myfile) {
+        setNewProduct({
+          ...newProduct,
+          image: myfile
+        })
+      }
     } else {
       setNewProduct({
         ...newProduct,
@@ -66,14 +77,24 @@ const AddProductTab = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (!newProduct.image) {
+      setStatusMessage({ error: true, message: 'Please select an image.' })
+      return
+    }
+
     const downloadURL = await uploadFileToFirestore(newProduct.image, newProduct.name)
-    const product = { ...newProduct, image: downloadURL }
-    const message = await uploadProduct(product)
-    setStatusMessage(message)
-    setNewProduct(initialState)
-    getAllProducts('products').then((products) => {
-      dispatch(updateProducts(products))
-    }) // Reset the form
+
+    if (downloadURL) {
+      const product = { ...newProduct, image: downloadURL }
+      const message = await uploadProduct(product)
+      setStatusMessage(message)
+      setNewProduct(initialState)
+      getAllProducts('products').then((products) => {
+        dispatch(updateProducts(products))
+      })
+    } else {
+      setStatusMessage({ error: true, message: 'Image upload failed.' })
+    }
   }
 
   const isFormValid = {
@@ -95,7 +116,7 @@ const AddProductTab = () => {
           <span className='text-blue-500 font-bold'>Add</span> new product (preview)
         </h2>
         <CustomItem
-          item={newProduct}
+          item={newProduct.image ? { ...newProduct, image: newProduct.image } : { ...newProduct, image: '' }}
           mode='disabled'
         />
       </div>

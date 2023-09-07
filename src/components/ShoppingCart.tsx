@@ -8,7 +8,7 @@ export type CartItem = {
   description: string
   category: string
   price: string
-  image: string | Blob
+  image: string | File
   sale: boolean
   saleAmount: string
   suspend: boolean

@@ -14,11 +14,10 @@ const RemoveProductTab = () => {
       {/* Product Section */}
       <div className='flex flex-wrap justify-center w-full'>
         {products &&
-          products.map((item, index) => (
+          products.map((item) => (
             <DrawerItem
               key={item.name}
               product={item}
-              index={index}
               adminMode={true}
             />
           ))}

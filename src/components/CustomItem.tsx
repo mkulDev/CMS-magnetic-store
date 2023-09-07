@@ -23,12 +23,10 @@ const CustomItem: React.FC<{ item: CartItem; mode: 'add' | 'suspend' | 'disabled
     })
   }
 
-  item.image instanceof Blob ? URL.createObjectURL(item.image) : ''
-
   return (
     <div className='flex flex-col items-center self-center p-4 m-4 shadow-md rounded-lg w-[250px] md:w-[300px] lg:w-[350px] hover:scale-105 duration-300 animate-fade '>
       <img
-        src={!item.image ? '../../public/images/customproduct.jpg' : item.image instanceof Blob ? URL.createObjectURL(item.image) : (item.image as string)}
+        src={!item.image ? '/images/customproduct.jpg' : typeof item.image === 'string' ? item.image : URL.createObjectURL(item.image)}
         alt={item.name}
         loading='lazy'
         className='bg-gray-200 h-[200px] md:h-[250px] '

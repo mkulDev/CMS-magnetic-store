@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 const Home = () => {
   const navigation = useNavigate()
   return (
-    <div className='bg-gray-100 min-h-screen '>
+    <div className='bg-gray-100 min-h-screen animate-fade'>
       <header className='bg-blue-500  text-white flex flex-col lg:flex-row '>
         <div className='flex flex-col justify-center items-start lg:w-[40%] p-[5%] '>
           <div className='flex flex-col justify-start my-8'>

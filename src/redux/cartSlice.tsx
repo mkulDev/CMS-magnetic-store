@@ -28,7 +28,6 @@ const cartSlice = createSlice({
         .reduce((a, b) => {
           return a + b
         }, 0)
-      console.log(calculation)
       return {
         ...state,
         totalPrice: calculation
@@ -36,8 +35,8 @@ const cartSlice = createSlice({
     },
     removeFromBasket: (state, action) => {
       const arr = [...state.basket]
-      console.log(arr)
-      const newArr = arr.filter((product, i) => i !== action.payload)
+
+      const newArr = arr.filter((product) => product.name !== action.payload.name)
 
       return { ...state, basket: newArr }
     }

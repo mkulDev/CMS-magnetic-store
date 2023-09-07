@@ -35,7 +35,6 @@ const Login = () => {
 
   const isDisabled = !(isValidEmail(email) && password && password.length >= 6)
 
-  console.log(isDisabled)
   return (
     <div className='flex justify-center h-[calc(100vh-80px)] items-center'>
       <form

@@ -27,11 +27,10 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Create your own account on emailjs and set a template! Important
 
     try {
       if (formData) {
-        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current as HTMLFormElement, 'YOUR_PUBLIC_KEY').then(
+        emailjs.sendForm(import.meta.env.VITE_REACT_APP_SERVICE, import.meta.env.VITE_REACT_APP_TEMPLATE, form.current as HTMLFormElement, import.meta.env.VITE_REACT_APP_PUBLIC).then(
           function (response) {
             console.log('SUCCESS!', response.status, response.text)
             setFormData(initialState)
@@ -49,8 +48,7 @@ const Contact: React.FC = () => {
     setFormData({ ...formData, reclamation: !formData.reclamation })
   }
   const isFormDisabled = Boolean(!(formData.email && formData.message && formData.name))
-  console.log(isFormDisabled)
-  console.log(formData)
+
   return (
     <div className="h-full flex flex-col w-full lg:gap-12 lg:flex-row lg:flex-wrap justify-center items-center lg:items-end font-bold mt-8 animate-fade'">
       <div className='flex flex-col  mb-8 items-start xl:w-1/3 '>
