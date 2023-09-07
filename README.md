@@ -1,27 +1,62 @@
-# React + TypeScript + Vite
+# CMS for Product Management Magnetic store
+Welcome to the Content Management System (CMS) for Product Management at the Magnetic Store. This CMS provides you with a straightforward and efficient way to manage the products available in your store. Whether you need to add new products, remove outdated ones, or temporarily suspend items from your catalog, this system has you covered.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
+My CMS simplifies this process by offering an intuitive admin panel that puts you in control of your product list.
+link to live demo: [here][https://magnetic-store.netlify.app]
 
-Currently, two official plugins are available:
+## Access the Admin Panel
+To get started, you can access the admin panel by clicking [here][https://magnetic-store.netlify.app/login]. You can use the following login credentials:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Username: owner@com.pl
+Password: ownerowner
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+-Add Products with Ease
+Adding new products to your store has never been easier. With my CMS, you can seamlessly input all the necessary details for each product in real time preview, including:
+Product Name: Clearly identify your products by name.
+Category: Organize your products by assigning them to specific categories.
+Description: Provide detailed and enticing product descriptions.
+Price: Set competitive prices for each item.
+Images: Showcase your products with stunning images.
 
-- Configure the top-level `parserOptions` property like this:
+-Remove Products Permanently
+When it's time to say goodbye to a product for good, our CMS lets you remove it from your catalog permanently. This keeps your product listings tidy and up-to-date, ensuring that customers only see available items.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+-Suspend or Activate Products
+Sometimes, you might need to temporarily suspend a product from your store, perhaps due to low stock or seasonal availability. Our system allows you to easily suspend and reactivate products as needed. This flexibility ensures that you're always in control of your product offerings.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Technologies Used
+
+- React.js for the frontend.
+- Redux for state management.
+- Firebase for file storage and authentication.
+- Tailwind css for styling.
+- emailjs for email sending.
+
+## Getting Started
+
+1. Clone this repository.
+2. Install dependencies using `npm install`.
+3. Configure your Firebase credentials in the appropriate files.
+4. Start the development server with `npm start`.
+5. Access the application at `http://localhost:3000`.
+
+## Usage
+
+1. Access the admin panel by logging in.
+2. Use the admin panel to manage products.
+
+## Screenshots
+
+<img src="/src/" alt="Alt Text" width="400"/>
+![Screenshot 2](/screenshots/screenshot2.png)
+
+## Contributing
+
+Contributions are welcome! P
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
