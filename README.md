@@ -1,5 +1,5 @@
 # CMS for Product Management Magnetic store
-Welcome to the Content Management System (CMS) for Product Management at the Magnetic Store. This CMS provides you with a straightforward and efficient way to manage the products available in your store. Whether you need to add new products, remove outdated ones, or temporarily suspend items from your catalog, this system has you covered.
+Welcome to the Content Management System (CMS) for Products at the Magnetic Store. This CMS provides you with a straightforward and efficient way to manage the products available in your store. Whether you need to add new products, remove outdated ones, or temporarily suspend items from your catalog, this system has you covered.
 
 ## Introduction
 My CMS simplifies this process by offering an intuitive admin panel that puts you in control of your product list.
