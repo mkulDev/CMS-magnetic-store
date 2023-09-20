@@ -3,7 +3,7 @@ Welcome to the Content Management System (CMS) for Products at the Magnetic Stor
 
 ## Introduction
 My CMS simplifies this process by offering an intuitive admin panel that puts you in control of your product list.
-Pease See live demo: https://magnetic-store.netlify.app
+You can watch live demo here: https://magnetic-store.netlify.app
 
 ## Screenshots
 <img src="/src/assets/screnn1.jpg" alt="Alt Text" width="500"/>
